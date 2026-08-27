@@ -1,0 +1,89 @@
+{
+  "slug": "podere-delle-ginestre",
+  "category": "ricettivo",
+  "businessName": "Podere delle Ginestre",
+  "tagline": "Agriturismo tra le colline aretine, dove il tempo rallenta",
+  "heroImage": "https://images.unsplash.com/photo-1500076656116-558758c991c1?q=80&w=1800&auto=format&fit=crop",
+  "colors": {
+    "primary": "#a8542e",
+    "secondary": "#5f6b47",
+    "accent": "#c9973f"
+  },
+  "description": "Da tre generazioni coltiviamo olivi e vigne su queste colline appena fuori Arezzo. Nel 2015 abbiamo aperto le porte del podere agli ospiti: sei camere ricavate dal vecchio fienile, una cucina che segue le stagioni e l'orto, e la vista sulla Valdichiana che non stanca mai.",
+  "aboutImage": "https://images.unsplash.com/photo-1601397702554-ce9ecbebc514?q=80&w=1200&auto=format&fit=crop",
+  "aboutQuote": {
+    "text": "Ogni ospite che arriva qui per una notte, prima o poi torna per una settimana.",
+    "author": "Famiglia Bianchi, dal 1974"
+  },
+  "stats": [
+    { "value": "1974", "label": "Dal" },
+    { "value": "6", "label": "Camere" },
+    { "value": "12", "label": "Ettari" },
+    { "value": "4.9", "label": "Su Google" }
+  ],
+  "services": [
+    {
+      "name": "Camera Doppia Vista Colline",
+      "description": "Travi a vista, bagno privato, terrazzino con vista sulla Valdichiana.",
+      "price": "da 95€/notte",
+      "image": "https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      "name": "Suite del Frantoio",
+      "description": "La più grande, ricavata dall'ex frantoio: soppalco, camino, vasca in pietra.",
+      "price": "da 140€/notte",
+      "image": "https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      "name": "Degustazione olio e vino",
+      "description": "Visita guidata al frantoio e alla cantina, con assaggio dei nostri prodotti.",
+      "price": "25€ a persona",
+      "image": "https://images.unsplash.com/photo-1474722883778-792e7990302f?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      "name": "Cena in podere",
+      "description": "Menu fisso a base di prodotti dell'orto e della cantina, su prenotazione.",
+      "price": "35€ a persona",
+      "image": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=1200&auto=format&fit=crop"
+    }
+  ],
+  "servicesTitle": "Camere & esperienze",
+  "gallery": [
+    "https://images.unsplash.com/photo-1616444527494-8a9f9ce6e77f?q=80&w=1200&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1611547720347-c1ba6a7dfc8d?q=80&w=1200&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1650481424286-9d30bcc140e1?q=80&w=1200&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1684836571999-f3dc511935e7?q=80&w=1200&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=1200&auto=format&fit=crop"
+  ],
+  "galleryTitle": "Un assaggio del podere",
+  "reviews": [
+    {
+      "text": "Colazione con marmellate fatte in casa, silenzio assoluto la notte, proprietari gentilissimi. Torneremo.",
+      "author": "Marco B.",
+      "rating": 5
+    },
+    {
+      "text": "La suite del frantoio è un sogno. La cena in podere da sola vale il viaggio da Arezzo.",
+      "author": "Elena T.",
+      "rating": 5
+    },
+    {
+      "text": "Perfetto per staccare qualche giorno. La degustazione dell'olio nuovo è stata bellissima.",
+      "author": "Giulia R.",
+      "rating": 4
+    }
+  ],
+  "contact": {
+    "address": "Via delle Ginestre 12, 52100 Arezzo AR",
+    "phone": "+39 0575 123456",
+    "email": "info@poderedelleginestre.it",
+    "whatsapp": "393331234567"
+  },
+  "ctaText": "Scopri le camere",
+  "formTitle": "Richiedi disponibilità",
+  "formSubtitle": "Scrivici le date che hai in mente: ti rispondiamo entro 24 ore con disponibilità e preventivo.",
+  "seo": {
+    "title": "Podere delle Ginestre — Agriturismo ad Arezzo",
+    "description": "Agriturismo tra le colline aretine: camere, degustazioni di olio e vino, cene con prodotti dell'orto."
+  }
+}

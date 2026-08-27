@@ -1,0 +1,67 @@
+---
+import MapEmbed from './MapEmbed.astro';
+
+interface Props {
+  title?: string;
+  eyebrow?: string;
+  contact: {
+    address: string;
+    phone: string;
+    email: string;
+    whatsapp: string;
+    mapEmbed?: string;
+  };
+}
+
+const { title = 'Dove siamo', eyebrow, contact } = Astro.props;
+const whatsappHref = `https://wa.me/${contact.whatsapp.replace(/[^0-9]/g, '')}`;
+---
+
+<section id="contatti" class="relative">
+  <div class="h-[32rem] w-full sm:h-[36rem]">
+    <MapEmbed address={contact.address} mapEmbed={contact.mapEmbed} rounded={false} />
+  </div>
+
+  <div
+    data-reveal
+    class="relative z-10 mx-auto -mt-24 max-w-md px-6 pb-16 sm:absolute sm:inset-y-0 sm:left-8 sm:mt-0 sm:flex sm:max-w-sm sm:items-center sm:px-0 sm:pb-0 lg:left-16"
+  >
+    <div class="w-full rounded-2xl bg-white p-8 shadow-2xl shadow-stone-900/10 ring-1 ring-stone-200 sm:p-10">
+      {eyebrow && (
+        <p class="mb-4 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-primary">
+          <span class="h-px w-8 bg-primary/50" />
+          {eyebrow}
+        </p>
+      )}
+      <h2 class="font-serif text-3xl font-medium text-stone-900">{title}</h2>
+
+      <dl class="mt-7 space-y-5 text-stone-700">
+        <div>
+          <dt class="text-xs font-semibold uppercase tracking-wide text-stone-400">Indirizzo</dt>
+          <dd class="mt-1">{contact.address}</dd>
+        </div>
+        <div>
+          <dt class="text-xs font-semibold uppercase tracking-wide text-stone-400">Telefono</dt>
+          <dd class="mt-1">
+            <a href={`tel:${contact.phone.replace(/\s+/g, '')}`} class="hover:text-primary">{contact.phone}</a>
+          </dd>
+        </div>
+        <div>
+          <dt class="text-xs font-semibold uppercase tracking-wide text-stone-400">Email</dt>
+          <dd class="mt-1">
+            <a href={`mailto:${contact.email}`} class="hover:text-primary">{contact.email}</a>
+          </dd>
+        </div>
+      </dl>
+
+      <a
+        href={whatsappHref}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-white transition-transform hover:scale-[1.02] active:scale-95"
+      >
+        Scrivici su WhatsApp
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,22 @@
+---
+interface Props {
+  address: string;
+  mapEmbed?: string;
+  rounded?: boolean;
+}
+
+const { address, mapEmbed, rounded = true } = Astro.props;
+
+const src = mapEmbed || `https://www.google.com/maps?q=${encodeURIComponent(address)}&output=embed`;
+---
+
+<div class={`h-full w-full overflow-hidden ${rounded ? 'aspect-[4/3] rounded-2xl border border-stone-200 sm:aspect-video' : ''}`}>
+  <iframe
+    src={src}
+    class="h-full w-full grayscale-[15%]"
+    style="border:0"
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    title={`Mappa: ${address}`}
+  ></iframe>
+</div>

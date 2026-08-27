@@ -1,0 +1,66 @@
+{
+  "slug": "oreficeria-de-santis",
+  "category": "b2b-artigianato",
+  "businessName": "Oreficeria De Santis",
+  "tagline": "Semilavorati e creazioni orafe, dal 1985 nel distretto orafo di Arezzo",
+  "heroImage": "https://images.unsplash.com/photo-1655111396188-8dd88ceb8b4d?q=80&w=1800&auto=format&fit=crop",
+  "colors": {
+    "primary": "#9c7a3c",
+    "secondary": "#1c1917",
+    "accent": "#d9c48f"
+  },
+  "badge": "Fatto a mano ad Arezzo",
+  "description": "Lavoriamo oro e argento per conto di gioiellerie e brand in tutta Italia: dalla fusione alla finitura, ogni pezzo passa dalle mani dei nostri orafi prima di arrivare al cliente finale. Piccole serie, campionature e pezzi unici su disegno.",
+  "aboutImage": "https://images.unsplash.com/photo-1624588057318-5f1b2eb81012?q=80&w=1200&auto=format&fit=crop",
+  "aboutQuote": {
+    "text": "Un anello si giudica al tatto prima ancora che alla vista: se non è perfetto al tocco, non esce dal laboratorio.",
+    "author": "Enzo De Santis, mastro orafo"
+  },
+  "stats": [
+    { "value": "1985", "label": "Dal" },
+    { "value": "40+", "label": "Clienti B2B" },
+    { "value": "100%", "label": "Made in Arezzo" }
+  ],
+  "services": [
+    {
+      "name": "Fedi e anelli",
+      "description": "Fedi nuziali e anelli in oro giallo, bianco e rosa, anche su disegno personalizzato.",
+      "image": "https://images.unsplash.com/photo-1622398925373-3f91b1e275f5?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      "name": "Semilavorati per gioiellerie",
+      "description": "Basi, castoni e componenti pronti per la finitura, venduti a peso o a pezzo.",
+      "image": "https://images.unsplash.com/photo-1543294001-f7cd5d7fb516?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      "name": "Pietre e incastonatura",
+      "description": "Incastonatura di pietre preziose e semipreziose su montature esistenti o create ad hoc.",
+      "image": "https://images.unsplash.com/photo-1608042314453-ae338d80c427?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      "name": "Pezzi unici su disegno",
+      "description": "Dal bozzetto al gioiello finito: sviluppiamo pezzi unici partendo da un'idea o un disegno.",
+      "image": "https://images.unsplash.com/photo-1611955167811-4711904bb9f8?q=80&w=1200&auto=format&fit=crop"
+    }
+  ],
+  "servicesTitle": "Le nostre creazioni",
+  "gallery": [
+    "https://images.unsplash.com/photo-1655111379423-b85edc4da9ac?q=80&w=1200&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1715374033196-0ff662284a7e?q=80&w=1200&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1621926184057-c5e1ba8d6f6b?q=80&w=1200&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1589207212797-cfd546dea0fe?q=80&w=1200&auto=format&fit=crop"
+  ],
+  "galleryTitle": "Il processo di lavorazione",
+  "contact": {
+    "address": "Via Fiorentina 112, 52100 Arezzo AR",
+    "phone": "+39 0575 345678",
+    "email": "commerciale@oreficeriadesantis.it",
+    "whatsapp": "393353456789"
+  },
+  "ctaText": "Scopri il catalogo",
+  "formTitle": "Richiedi una quotazione",
+  "seo": {
+    "title": "Oreficeria De Santis — Semilavorati orafi Arezzo",
+    "description": "Laboratorio orafo B2B ad Arezzo: semilavorati, incastonatura e pezzi unici su disegno per gioiellerie."
+  }
+}

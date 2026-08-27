@@ -1,0 +1,85 @@
+{
+  "slug": "atelier-lucrezia",
+  "category": "beauty",
+  "businessName": "Atelier Lucrezia",
+  "tagline": "Parrucchieria & beauty studio nel cuore di Arezzo",
+  "heroImage": "https://images.unsplash.com/photo-1600948836101-f9ffda59d250?q=80&w=1800&auto=format&fit=crop",
+  "colors": {
+    "primary": "#b8788a",
+    "secondary": "#8a9a7e",
+    "accent": "#cba26a"
+  },
+  "description": "Un salone pensato per rallentare: luce naturale, prodotti selezionati, un team che si prende il tempo di ascoltare cosa vuoi davvero prima di prendere le forbici in mano. Taglio, colore, trattamenti viso e mani in un unico spazio.",
+  "aboutImage": "https://images.unsplash.com/photo-1600948835780-9c4a8b55cf50?q=80&w=1200&auto=format&fit=crop",
+  "aboutQuote": {
+    "text": "Non vendiamo un taglio, vendiamo mezza giornata in cui pensi solo a te.",
+    "author": "Lucrezia, titolare"
+  },
+  "stats": [
+    { "value": "12", "label": "Anni di attività" },
+    { "value": "4", "label": "Professioniste" },
+    { "value": "4.9", "label": "Su Google" }
+  ],
+  "services": [
+    {
+      "name": "Taglio & piega",
+      "description": "Consulenza personalizzata, taglio su misura e piega professionale.",
+      "price": "da 35€",
+      "image": "https://images.unsplash.com/photo-1626383126210-15c15e62d9ba?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      "name": "Colore & schiariture",
+      "description": "Colore, balayage e schiariture con prodotti a bassa percentuale di ammoniaca.",
+      "price": "da 65€",
+      "image": "https://images.unsplash.com/photo-1774660810744-fd0fbbf99765?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      "name": "Manicure & semipermanente",
+      "description": "Manicure curativa e smalto semipermanente, oltre 40 colori disponibili.",
+      "price": "da 25€",
+      "image": "https://images.unsplash.com/photo-1750263147723-ebd447918d89?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      "name": "Trattamento viso",
+      "description": "Pulizia viso e trattamenti idratanti su misura per il tuo tipo di pelle.",
+      "price": "da 45€",
+      "image": "https://images.unsplash.com/photo-1626379501846-0df4067b8bb9?q=80&w=1200&auto=format&fit=crop"
+    }
+  ],
+  "servicesTitle": "I nostri servizi",
+  "gallery": [
+    "https://images.unsplash.com/photo-1637777277337-f114350fb088?q=80&w=1200&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1626383120723-2a941488860d?q=80&w=1200&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1556740758-90de374c12ad?q=80&w=1200&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1600948835780-9c4a8b55cf50?q=80&w=1200&auto=format&fit=crop"
+  ],
+  "galleryTitle": "Il salone",
+  "reviews": [
+    {
+      "text": "Finalmente un parrucchiere che ascolta prima di tagliare. Il colore è perfetto da mesi.",
+      "author": "Chiara V.",
+      "rating": 5
+    },
+    {
+      "text": "Ambiente curatissimo, personale gentile e preparato. La manicure dura davvero settimane.",
+      "author": "Alessia F.",
+      "rating": 5
+    },
+    {
+      "text": "Ho portato mia figlia per il primo taglio importante: pazienza infinita, risultato bellissimo.",
+      "author": "Sara P.",
+      "rating": 5
+    }
+  ],
+  "contact": {
+    "address": "Corso Italia 45, 52100 Arezzo AR",
+    "phone": "+39 0575 456789",
+    "email": "info@atelierlucrezia.it",
+    "whatsapp": "393334567890"
+  },
+  "ctaText": "Prenota ora",
+  "seo": {
+    "title": "Atelier Lucrezia — Parrucchieria & beauty studio Arezzo",
+    "description": "Taglio, colore, manicure e trattamenti viso ad Arezzo. Prenota il tuo appuntamento su WhatsApp."
+  }
+}

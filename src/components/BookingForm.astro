@@ -1,0 +1,93 @@
+---
+// Form di richiesta generico (disponibilità, preventivo, prenotazione, quotazione...).
+// È sempre un mock: nessun dato viene inviato altrove, la demo è "non ancora online"
+// per trasparenza col prospect. Il click mostra solo un messaggio di conferma.
+interface Field {
+  name: string;
+  label: string;
+  type?: 'text' | 'email' | 'tel' | 'date' | 'number' | 'textarea';
+  required?: boolean;
+  placeholder?: string;
+}
+
+interface Props {
+  id?: string;
+  eyebrow?: string;
+  title: string;
+  subtitle?: string;
+  note?: string;
+  fields: Field[];
+  submitLabel?: string;
+}
+
+const { id = 'richiesta', eyebrow, title, subtitle, note, fields, submitLabel = 'Invia richiesta' } = Astro.props;
+---
+
+<section id={id} class="bg-stone-100 py-20 sm:py-28">
+  <div class="mx-auto grid max-w-6xl gap-12 px-6 sm:px-8 lg:grid-cols-[1fr_1.2fr] lg:gap-20">
+    <div data-reveal class="lg:sticky lg:top-32 lg:self-start">
+      {eyebrow && (
+        <p class="mb-4 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-primary">
+          <span class="h-px w-8 bg-primary/50" />
+          {eyebrow}
+        </p>
+      )}
+      <h2 class="font-serif text-3xl font-medium text-stone-900 sm:text-4xl">{title}</h2>
+      {subtitle && <p class="mt-4 max-w-sm text-stone-600">{subtitle}</p>}
+      {note && <p class="mt-6 text-sm font-medium text-stone-500">{note}</p>}
+    </div>
+
+    <form data-reveal class="grid gap-5 rounded-2xl bg-white p-8 shadow-sm ring-1 ring-stone-200 sm:p-10" data-demo-form>
+      {
+        fields.map((field) => (
+          <div>
+            <label class="mb-1.5 block text-sm font-medium text-stone-700" for={field.name}>
+              {field.label}
+              {field.required && ' *'}
+            </label>
+            {field.type === 'textarea' ? (
+              <textarea
+                id={field.name}
+                name={field.name}
+                required={field.required}
+                placeholder={field.placeholder}
+                rows={4}
+                class="w-full rounded-lg border border-stone-300 px-4 py-2.5 text-stone-900 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+              />
+            ) : (
+              <input
+                id={field.name}
+                name={field.name}
+                type={field.type ?? 'text'}
+                required={field.required}
+                placeholder={field.placeholder}
+                class="w-full rounded-lg border border-stone-300 px-4 py-2.5 text-stone-900 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+              />
+            )}
+          </div>
+        ))
+      }
+      <button
+        type="submit"
+        class="mt-2 inline-flex items-center justify-center rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-white transition-transform hover:scale-[1.02] active:scale-95"
+      >
+        {submitLabel}
+      </button>
+      <p class="form-success hidden text-sm font-medium text-secondary" role="status">
+        Grazie! Questa è una demo: nel sito reale la richiesta arriverebbe direttamente qui, via email o gestionale.
+      </p>
+    </form>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>('[data-demo-form]').forEach((form) => {
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      form.querySelector('.form-success')?.classList.remove('hidden');
+      form.querySelectorAll('input, textarea, button').forEach((el) => {
+        (el as HTMLInputElement | HTMLTextAreaElement | HTMLButtonElement).disabled = true;
+      });
+    });
+  });
+</script>

@@ -1,0 +1,43 @@
+---
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import Ricettivo from '../../categories/Ricettivo.astro';
+import Artigiani from '../../categories/Artigiani.astro';
+import Beauty from '../../categories/Beauty.astro';
+import B2BArtigianato from '../../categories/B2BArtigianato.astro';
+import Gastronomia from '../../categories/Gastronomia.astro';
+
+export async function getStaticPaths() {
+  const leads = await getCollection('leads');
+  return leads.map((entry) => ({
+    params: { slug: entry.data.slug },
+    props: { lead: entry.data },
+  }));
+}
+
+interface Props {
+  lead: CollectionEntry<'leads'>['data'];
+}
+
+const { lead } = Astro.props;
+
+// Aggiungi qui la nuova categoria non appena il suo template è pronto
+// (vedi README.md, sezione "Aggiungere una categoria").
+const templatesByCategory = {
+  ricettivo: Ricettivo,
+  artigiani: Artigiani,
+  beauty: Beauty,
+  'b2b-artigianato': B2BArtigianato,
+  gastronomia: Gastronomia,
+} as const;
+
+const Template = templatesByCategory[lead.category as keyof typeof templatesByCategory];
+
+if (!Template) {
+  throw new Error(
+    `Nessun template implementato per la categoria "${lead.category}" (lead: ${lead.slug}).`,
+  );
+}
+---
+
+<Template lead={lead} />

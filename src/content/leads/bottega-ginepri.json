@@ -1,0 +1,92 @@
+{
+  "slug": "bottega-ginepri",
+  "category": "artigiani",
+  "businessName": "Bottega Ginepri",
+  "tagline": "Tappezzeria artigianale dal 1968, tra Arezzo e la Valdichiana",
+  "heroImage": "https://images.unsplash.com/photo-1590880795696-20c7dfadacde?q=80&w=1800&auto=format&fit=crop",
+  "colors": {
+    "primary": "#8a3324",
+    "secondary": "#2b2b28",
+    "accent": "#c98a3e"
+  },
+  "badge": "Dal 1968",
+  "description": "Restauriamo poltrone, divani e sedute d'epoca con le stesse tecniche di allora: imbottiture in crine naturale, molle a mano, tessuti scelti uno a uno. Ogni pezzo che entra in bottega esce con qualche anno di vita in più, non con l'aria di essere stato rifatto.",
+  "aboutImage": "https://images.unsplash.com/photo-1597960194599-22929afc25b1?q=80&w=1200&auto=format&fit=crop",
+  "aboutQuote": {
+    "text": "Un mobile ben fatto non si butta, si rifà. È più sostenibile, e viene meglio di uno nuovo.",
+    "author": "Giuliano Ginepri, terza generazione"
+  },
+  "stats": [
+    { "value": "1968", "label": "Dal" },
+    { "value": "3ª", "label": "Generazione" },
+    { "value": "500+", "label": "Pezzi restaurati" },
+    { "value": "100%", "label": "Fatto a mano" }
+  ],
+  "beforeAfter": [
+    {
+      "before": "https://images.unsplash.com/photo-1578653282816-a508bd2d0435?q=80&w=1000&auto=format&fit=crop",
+      "after": "https://images.unsplash.com/photo-1582203500351-297829d76c36?q=80&w=1000&auto=format&fit=crop",
+      "label": "Poltrona club anni '60 — restauro completo con nuova imbottitura"
+    },
+    {
+      "before": "https://images.unsplash.com/photo-1613270481280-3413ff307a94?q=80&w=1000&auto=format&fit=crop",
+      "after": "https://images.unsplash.com/photo-1506898667547-42e22a46e125?q=80&w=1000&auto=format&fit=crop",
+      "label": "Poltroncina da salotto — rifacimento struttura e rivestimento"
+    }
+  ],
+  "services": [
+    {
+      "name": "Restauro poltrone e divani",
+      "description": "Struttura, molleggio e imbottitura rifatti a regola d'arte, con il tessuto che preferisci.",
+      "image": "https://images.unsplash.com/photo-1633655442330-0b44ca0cce9b?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      "name": "Rivestimento su misura",
+      "description": "Sedie, testiere, panche: realizziamo rivestimenti su misura per qualsiasi arredo.",
+      "image": "https://images.unsplash.com/photo-1624516268152-1e48624026ed?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      "name": "Tende e complementi",
+      "description": "Tende, cuscini e complementi tessili in tinta con il tuo progetto d'arredo.",
+      "image": "https://images.unsplash.com/photo-1705412877691-70f6913aaa1e?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      "name": "Consulenza tessuti",
+      "description": "Ti aiutiamo a scegliere il tessuto giusto tra centinaia di campioni in bottega.",
+      "image": "https://images.unsplash.com/photo-1523456836369-09236da4c580?q=80&w=1200&auto=format&fit=crop"
+    }
+  ],
+  "servicesTitle": "Cosa facciamo",
+  "gallery": [
+    "https://images.unsplash.com/photo-1528717384022-f8d665c86909?q=80&w=1200&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1705412877691-70f6913aaa1e?q=80&w=1200&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1711037867773-423462fbf34f?q=80&w=1200&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1624516268152-1e48624026ed?q=80&w=1200&auto=format&fit=crop"
+  ],
+  "galleryTitle": "Dentro la bottega",
+  "serviceArea": ["Arezzo", "Cortona", "Castiglion Fiorentino", "Bibbiena", "San Giovanni Valdarno"],
+  "reviews": [
+    {
+      "text": "Mi hanno restaurato la poltrona di mio nonno: sembra uscita da un negozio di design, ma è sempre lei.",
+      "author": "Federica S.",
+      "rating": 5
+    },
+    {
+      "text": "Preventivo chiaro, tempi rispettati, lavoro fatto benissimo. Difficile trovare artigiani così oggi.",
+      "author": "Roberto M.",
+      "rating": 5
+    }
+  ],
+  "contact": {
+    "address": "Via dell'Artigianato 8, 52100 Arezzo AR",
+    "phone": "+39 0575 987654",
+    "email": "info@bottegaginepri.it",
+    "whatsapp": "393339876543"
+  },
+  "ctaText": "Guarda i lavori",
+  "formTitle": "Richiedi un preventivo",
+  "seo": {
+    "title": "Bottega Ginepri — Tappezzeria artigianale ad Arezzo",
+    "description": "Restauro di poltrone, divani e sedute d'epoca ad Arezzo dal 1968. Preventivi gratuiti."
+  }
+}

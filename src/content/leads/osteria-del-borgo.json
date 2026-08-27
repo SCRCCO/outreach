@@ -1,0 +1,112 @@
+{
+  "slug": "osteria-del-borgo",
+  "category": "gastronomia",
+  "businessName": "Osteria del Borgo",
+  "tagline": "Cucina toscana di stagione nel centro storico di Arezzo",
+  "heroImage": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1800&auto=format&fit=crop",
+  "colors": {
+    "primary": "#7a2331",
+    "secondary": "#2b2622",
+    "accent": "#c9a15a"
+  },
+  "description": "Piatti della tradizione aretina rivisitati con ingredienti a chilometro zero: la pasta è fatta in casa ogni mattina, la carne viene da allevatori della zona, la carta dei vini racconta le colline che vedi dalla finestra. Aperti a cena tutti i giorni, a pranzo dal giovedì alla domenica.",
+  "aboutImage": "https://images.unsplash.com/photo-1643101570532-88c8ecc07c1f?q=80&w=1200&auto=format&fit=crop",
+  "stats": [
+    { "value": "1998", "label": "Dal" },
+    { "value": "40", "label": "Coperti" },
+    { "value": "4.8", "label": "Su Google" }
+  ],
+  "services": [
+    {
+      "name": "Tagliere di salumi e formaggi toscani",
+      "description": "Selezione di salumi e pecorini di produttori locali, miele e confetture della casa.",
+      "price": "16€",
+      "group": "Antipasti"
+    },
+    {
+      "name": "Crostini toscani",
+      "description": "Il classico crostino con fegatini, rivisitato con burro e alici.",
+      "price": "9€",
+      "group": "Antipasti"
+    },
+    {
+      "name": "Pici cacio e pepe",
+      "description": "Pici fatti a mano ogni mattina, pecorino di grotta e pepe macinato al momento.",
+      "price": "14€",
+      "group": "Primi"
+    },
+    {
+      "name": "Tortelli di patate al ragù",
+      "description": "Ripieno di patate di montagna, ragù di cinta senese cotto 6 ore.",
+      "price": "15€",
+      "group": "Primi"
+    },
+    {
+      "name": "Bistecca alla fiorentina",
+      "description": "Razza chianina, cottura alla brace, servita al taglio (min. 1 kg).",
+      "price": "58€/kg",
+      "group": "Secondi"
+    },
+    {
+      "name": "Peposo alla fornacina",
+      "description": "Guancia di manzo brasata nel vino rosso con abbondante pepe nero, come da ricetta ottocentesca.",
+      "price": "19€",
+      "group": "Secondi"
+    },
+    {
+      "name": "Cantucci e vin santo",
+      "description": "Cantucci fatti in casa da inzuppare nel vin santo del Chianti.",
+      "price": "8€",
+      "group": "Dolci"
+    },
+    {
+      "name": "Tiramisù della casa",
+      "description": "Ricetta della nonna, mascarpone fresco e caffè tostato in zona.",
+      "price": "7€",
+      "group": "Dolci"
+    }
+  ],
+  "servicesTitle": "Il menu",
+  "servicesSubtitle": "Cambia con le stagioni: questi sono alcuni dei piatti che trovi più spesso in carta.",
+  "hours": [
+    { "day": "Lunedì", "time": "Chiuso" },
+    { "day": "Martedì – Mercoledì", "time": "19:30 – 22:30" },
+    { "day": "Giovedì – Domenica", "time": "12:30 – 14:30 / 19:30 – 22:30" }
+  ],
+  "gallery": [
+    "https://images.unsplash.com/photo-1643101570532-88c8ecc07c1f?q=80&w=1200&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1663530761401-15eefb544889?q=80&w=1200&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1616671285410-2a676a9a433d?q=80&w=1200&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1621494268492-d01b98eba7e4?q=80&w=1200&auto=format&fit=crop"
+  ],
+  "galleryTitle": "In sala e in cucina",
+  "reviews": [
+    {
+      "text": "La bistecca migliore che abbia mangiato ad Arezzo, punto. Personale che ti fa sentire a casa.",
+      "author": "Lorenzo D.",
+      "rating": 5
+    },
+    {
+      "text": "I pici cacio e pepe sono da soli un motivo per tornare. Location bellissima nel centro storico.",
+      "author": "Martina C.",
+      "rating": 5
+    },
+    {
+      "text": "Cucina vera, niente fronzoli. Prezzi onesti per la qualità che trovi nel piatto.",
+      "author": "Andrea G.",
+      "rating": 4
+    }
+  ],
+  "contact": {
+    "address": "Piazza Grande 3, 52100 Arezzo AR",
+    "phone": "+39 0575 234567",
+    "email": "info@osteriadelborgo.it",
+    "whatsapp": "393342345678"
+  },
+  "ctaText": "Vedi il menu",
+  "formTitle": "Prenota un tavolo",
+  "seo": {
+    "title": "Osteria del Borgo — Cucina toscana ad Arezzo",
+    "description": "Cucina toscana di stagione nel centro storico di Arezzo. Pici fatti in casa, bistecca alla fiorentina, prenotazione tavolo."
+  }
+}

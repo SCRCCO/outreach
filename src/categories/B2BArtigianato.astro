@@ -1,0 +1,116 @@
+---
+// Template per la categoria "B2B artigianato": orafi, laboratori, semilavorati.
+// Non contiene mai testo o dati specifici di un'azienda: tutto arriva da `lead`.
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ServiceGrid from '../components/ServiceGrid.astro';
+import Gallery from '../components/Gallery.astro';
+import BookingForm from '../components/BookingForm.astro';
+import ContactSection from '../components/ContactSection.astro';
+
+interface Props {
+  lead: CollectionEntry<'leads'>['data'];
+}
+
+const { lead } = Astro.props;
+
+const FONTS_HREF =
+  'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap';
+
+const navLinks = [
+  { label: 'Catalogo', href: '#catalogo' },
+  { label: 'Lavorazione', href: '#galleria' },
+  { label: 'Preventivo', href: '#preventivo' },
+  { label: 'Contatti', href: '#contatti' },
+];
+---
+
+<BaseLayout
+  title={lead.seo?.title ?? `${lead.businessName} — ${lead.tagline}`}
+  description={lead.seo?.description ?? lead.description}
+  businessName={lead.businessName}
+  tagline={lead.tagline}
+  colors={lead.colors}
+  whatsapp={lead.contact.whatsapp}
+  phone={lead.contact.phone}
+  navLinks={navLinks}
+  navCtaText="Richiedi quotazione"
+  navCtaHref="#preventivo"
+  fontsHref={FONTS_HREF}
+  fontSerif="'Cormorant Garamond', ui-serif, Georgia, serif"
+  fontSans="'Manrope', ui-sans-serif, system-ui, sans-serif"
+>
+  <Hero
+    eyebrow="Artigianato orafo"
+    badge={lead.badge}
+    businessName={lead.businessName}
+    tagline={lead.tagline}
+    heroImage={lead.heroImage}
+    ctaText={lead.ctaText}
+    ctaHref="#catalogo"
+    stats={lead.stats}
+  />
+
+  <section class="bg-stone-950 py-20 text-white sm:py-28">
+    <div class="mx-auto grid max-w-6xl items-center gap-12 px-6 sm:px-8 lg:grid-cols-2 lg:gap-20">
+      <div data-reveal>
+        <p class="mb-4 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-accent">
+          <span class="h-px w-8 bg-accent/60"></span>
+          La lavorazione
+        </p>
+        <h2 class="font-serif text-3xl font-medium leading-tight sm:text-4xl">La cura del dettaglio</h2>
+        <p class="mt-6 text-lg leading-relaxed text-white/70">{lead.description}</p>
+        {
+          lead.aboutQuote && (
+            <blockquote class="mt-10 border-l-2 border-accent/50 pl-6">
+              <p class="font-serif text-xl italic leading-snug text-white">&ldquo;{lead.aboutQuote.text}&rdquo;</p>
+              <cite class="mt-3 block text-sm not-italic font-medium text-white/60">— {lead.aboutQuote.author}</cite>
+            </blockquote>
+          )
+        }
+      </div>
+      <div data-reveal style="transition-delay: 120ms" class="overflow-hidden rounded-2xl">
+        <img
+          src={lead.aboutImage ?? lead.gallery[0] ?? lead.heroImage}
+          alt={lead.businessName}
+          class="aspect-[4/5] w-full object-cover"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </section>
+
+  <ServiceGrid
+    id="catalogo"
+    eyebrow="Catalogo"
+    title={lead.servicesTitle ?? 'Le nostre creazioni'}
+    subtitle={lead.servicesSubtitle}
+    services={lead.services}
+  />
+
+  <Gallery
+    eyebrow="In laboratorio"
+    title={lead.galleryTitle ?? 'Il processo di lavorazione'}
+    images={lead.gallery}
+    alt={lead.businessName}
+  />
+
+  <BookingForm
+    id="preventivo"
+    eyebrow="Preventivo"
+    title={lead.formTitle ?? 'Richiedi una quotazione'}
+    subtitle={lead.formSubtitle ?? 'Raccontaci cosa ti serve: materiali, quantità, tempistiche. Ti rispondiamo con un preventivo su misura.'}
+    note="Rispondiamo entro 48 ore lavorative."
+    submitLabel="Richiedi quotazione"
+    fields={[
+      { name: 'nome', label: 'Nome e cognome', type: 'text', required: true, placeholder: 'Mario Rossi' },
+      { name: 'azienda', label: 'Azienda (opzionale)', type: 'text', placeholder: 'Nome attività' },
+      { name: 'contatto', label: 'Email o telefono', type: 'text', required: true, placeholder: 'mario@email.it' },
+      { name: 'quantita', label: 'Quantità indicativa', type: 'text', placeholder: 'Es. 20 pezzi, campionatura...' },
+      { name: 'descrizione', label: 'Descrizione', type: 'textarea', required: true, placeholder: 'Materiali, finiture, riferimenti...' },
+    ]}
+  />
+
+  <ContactSection eyebrow="Contatti" title="Il laboratorio" contact={lead.contact} />
+</BaseLayout>

@@ -1,0 +1,45 @@
+---
+interface Props {
+  text: string;
+  author: string;
+  rating?: number;
+  featured?: boolean;
+}
+
+const { text, author, rating, featured = false } = Astro.props;
+---
+
+{
+  featured ? (
+    <figure data-reveal class="mx-auto max-w-2xl text-center">
+      <span class="font-serif text-6xl leading-none text-primary/30" aria-hidden="true">
+        &ldquo;
+      </span>
+      <blockquote class="mt-2 font-serif text-2xl leading-snug text-stone-900 sm:text-3xl">{text}</blockquote>
+      <figcaption class="mt-6 flex items-center justify-center gap-3 text-sm font-medium text-stone-500">
+        {rating && (
+          <span class="flex gap-0.5 text-accent" aria-hidden="true">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <span class={i < rating ? 'opacity-100' : 'opacity-25'}>★</span>
+            ))}
+          </span>
+        )}
+        {author}
+      </figcaption>
+    </figure>
+  ) : (
+    <figure data-reveal class="flex h-full flex-col justify-between rounded-2xl bg-white p-7 ring-1 ring-stone-200">
+      <div>
+        {rating && (
+          <div class="mb-3 flex gap-0.5 text-accent" aria-hidden="true">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <span class={i < rating ? 'opacity-100' : 'opacity-25'}>★</span>
+            ))}
+          </div>
+        )}
+        <blockquote class="text-base leading-relaxed text-stone-700">&ldquo;{text}&rdquo;</blockquote>
+      </div>
+      <figcaption class="mt-6 text-sm font-medium text-stone-500">{author}</figcaption>
+    </figure>
+  )
+}

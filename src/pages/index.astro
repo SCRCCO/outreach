@@ -1,0 +1,43 @@
+---
+// Indice interno di lavoro: elenca tutte le demo generate, per ritrovarle
+// velocemente durante lo sviluppo. Non è pensato per il prospect.
+import { getCollection } from 'astro:content';
+import '../styles/global.css';
+
+const leads = await getCollection('leads');
+---
+
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Demo generator — indice</title>
+  </head>
+  <body class="min-h-screen bg-stone-50 p-10 font-sans text-stone-900">
+    <h1 class="font-serif text-3xl font-medium">Demo generate</h1>
+    <p class="mt-2 text-stone-600">
+      {leads.length} lead in <code class="rounded bg-stone-200 px-1.5 py-0.5 text-sm">src/content/leads/</code>
+    </p>
+
+    {
+      leads.length === 0 ? (
+        <p class="mt-8 text-stone-500">
+          Nessun lead ancora. Esegui <code class="rounded bg-stone-200 px-1.5 py-0.5 text-sm">npm run new-lead</code>.
+        </p>
+      ) : (
+        <ul class="mt-8 max-w-xl divide-y divide-stone-200 rounded-xl border border-stone-200 bg-white">
+          {leads.map((lead) => (
+            <li>
+              <a href={`/demo/${lead.data.slug}`} class="flex items-center justify-between px-5 py-4 hover:bg-stone-50">
+                <span class="font-medium">{lead.data.businessName}</span>
+                <span class="text-sm text-stone-400">{lead.data.category} → /demo/{lead.data.slug}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </body>
+</html>

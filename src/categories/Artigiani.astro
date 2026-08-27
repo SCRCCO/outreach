@@ -1,0 +1,184 @@
+---
+// Template per la categoria "Artigiani di servizio": sartorie, tappezzerie, carrozzerie, calzolai.
+// Non contiene mai testo o dati specifici di un'azienda: tutto arriva da `lead`.
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ServiceGrid from '../components/ServiceGrid.astro';
+import Gallery from '../components/Gallery.astro';
+import BookingForm from '../components/BookingForm.astro';
+import ReviewCard from '../components/ReviewCard.astro';
+import ContactSection from '../components/ContactSection.astro';
+
+interface Props {
+  lead: CollectionEntry<'leads'>['data'];
+}
+
+const { lead } = Astro.props;
+
+const FONTS_HREF =
+  'https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;500;600;700&family=Work+Sans:wght@400;500;600&display=swap';
+
+const navLinks = [
+  { label: 'Lavori', href: '#galleria' },
+  { label: 'Servizi', href: '#servizi' },
+  { label: 'Zona operativa', href: '#zona' },
+  { label: 'Contatti', href: '#contatti' },
+];
+---
+
+<BaseLayout
+  title={lead.seo?.title ?? `${lead.businessName} — ${lead.tagline}`}
+  description={lead.seo?.description ?? lead.description}
+  businessName={lead.businessName}
+  tagline={lead.tagline}
+  colors={lead.colors}
+  whatsapp={lead.contact.whatsapp}
+  phone={lead.contact.phone}
+  navLinks={navLinks}
+  navCtaText="Richiedi preventivo"
+  navCtaHref="#preventivo"
+  fontsHref={FONTS_HREF}
+  fontSerif="'Zilla Slab', ui-serif, Georgia, serif"
+  fontSans="'Work Sans', ui-sans-serif, system-ui, sans-serif"
+>
+  <Hero
+    eyebrow="Artigiani di servizio"
+    badge={lead.badge}
+    businessName={lead.businessName}
+    tagline={lead.tagline}
+    heroImage={lead.heroImage}
+    ctaText={lead.ctaText}
+    ctaHref="#galleria"
+    stats={lead.stats}
+  />
+
+  <section class="mx-auto max-w-6xl px-6 py-20 sm:px-8 sm:py-28">
+    <div class="grid items-stretch gap-12 lg:grid-cols-2 lg:gap-16">
+      <div data-reveal class="flex flex-col justify-center lg:order-2">
+        <p class="mb-4 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-primary">
+          <span class="h-px w-8 bg-primary/50"></span>
+          Chi siamo
+        </p>
+        <h2 class="font-serif text-3xl font-medium leading-tight text-stone-900 sm:text-4xl">Il nostro mestiere</h2>
+        <p class="mt-6 text-lg leading-relaxed text-stone-600">{lead.description}</p>
+        {
+          lead.aboutQuote && (
+            <blockquote class="mt-10 border-l-2 border-primary/40 pl-6">
+              <p class="font-serif text-xl italic leading-snug text-stone-800">&ldquo;{lead.aboutQuote.text}&rdquo;</p>
+              <cite class="mt-3 block text-sm not-italic font-medium text-stone-500">— {lead.aboutQuote.author}</cite>
+            </blockquote>
+          )
+        }
+      </div>
+      <div data-reveal style="transition-delay: 120ms" class="overflow-hidden rounded-2xl lg:order-1">
+        <img
+          src={lead.aboutImage ?? lead.gallery[0] ?? lead.heroImage}
+          alt={lead.businessName}
+          class="aspect-[4/5] h-full w-full object-cover"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </section>
+
+  {
+    lead.beforeAfter && lead.beforeAfter.length > 0 && (
+      <section id="galleria" class="mx-auto max-w-6xl px-6 py-20 sm:px-8 sm:py-28">
+        <div data-reveal class="mb-14 max-w-xl">
+          <p class="mb-4 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-primary">
+            <span class="h-px w-8 bg-primary/50" />
+            Il lavoro parla da sé
+          </p>
+          <h2 class="font-serif text-3xl font-medium text-stone-900 sm:text-4xl">Prima & dopo</h2>
+        </div>
+        <div class="grid gap-8 sm:grid-cols-2">
+          {lead.beforeAfter.map((item, i) => (
+            <div data-reveal style={`transition-delay:${i * 100}ms`} class="overflow-hidden rounded-2xl bg-white ring-1 ring-stone-200">
+              <div class="grid grid-cols-2">
+                <div class="relative aspect-square overflow-hidden bg-stone-100">
+                  <img src={item.before} alt="Prima" class="h-full w-full object-cover" loading="lazy" />
+                  <span class="absolute left-3 top-3 rounded-full bg-stone-950/70 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white">
+                    Prima
+                  </span>
+                </div>
+                <div class="relative aspect-square overflow-hidden bg-stone-100">
+                  <img src={item.after} alt="Dopo" class="h-full w-full object-cover" loading="lazy" />
+                  <span class="absolute right-3 top-3 rounded-full bg-primary px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white">
+                    Dopo
+                  </span>
+                </div>
+              </div>
+              {item.label && <p class="px-5 py-4 text-sm font-medium text-stone-600">{item.label}</p>}
+            </div>
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  <Gallery
+    eyebrow="In laboratorio"
+    title={lead.galleryTitle ?? 'Galleria lavori'}
+    images={lead.gallery}
+    alt={lead.businessName}
+  />
+
+  <ServiceGrid
+    id="servizi"
+    eyebrow="Cosa facciamo"
+    title={lead.servicesTitle ?? 'Servizi'}
+    subtitle={lead.servicesSubtitle}
+    services={lead.services}
+  />
+
+  <BookingForm
+    id="preventivo"
+    eyebrow="Preventivo"
+    title={lead.formTitle ?? 'Richiedi un preventivo'}
+    subtitle={lead.formSubtitle ?? 'Descrivici il lavoro: ti rispondiamo con una valutazione indicativa.'}
+    note="Rispondiamo entro 24 ore, anche via WhatsApp."
+    submitLabel="Richiedi preventivo"
+    fields={[
+      { name: 'nome', label: 'Nome e cognome', type: 'text', required: true, placeholder: 'Mario Rossi' },
+      { name: 'contatto', label: 'Email o telefono', type: 'text', required: true, placeholder: 'mario@email.it' },
+      { name: 'lavoro', label: 'Tipo di lavoro', type: 'text', required: true, placeholder: 'Es. orlo pantaloni, rifacimento divano...' },
+      { name: 'descrizione', label: 'Descrizione', type: 'textarea', placeholder: 'Raccontaci cosa ti serve, il più possibile nel dettaglio.' },
+    ]}
+  />
+
+  {
+    lead.serviceArea && lead.serviceArea.length > 0 && (
+      <section id="zona" class="bg-stone-100 py-20 sm:py-28">
+        <div class="mx-auto max-w-6xl px-6 text-center sm:px-8">
+          <p data-reveal class="mb-4 flex items-center justify-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-primary">
+            <span class="h-px w-8 bg-primary/50" />
+            Zona operativa
+          </p>
+          <h2 data-reveal class="font-serif text-3xl font-medium text-stone-900 sm:text-4xl">Dove lavoriamo</h2>
+          <div data-reveal class="mx-auto mt-8 flex max-w-2xl flex-wrap justify-center gap-3">
+            {lead.serviceArea.map((place) => (
+              <span class="rounded-full border border-stone-300 bg-white px-4 py-2 text-sm font-medium text-stone-700">{place}</span>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    lead.reviews.length > 0 && (
+      <section class="bg-white py-20 sm:py-28">
+        <div class="mx-auto max-w-6xl px-6 sm:px-8">
+          <div class="grid gap-6 sm:grid-cols-3">
+            {lead.reviews.map((review) => (
+              <ReviewCard text={review.text} author={review.author} rating={review.rating} />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <ContactSection eyebrow="Contatti" title="Vieni a trovarci" contact={lead.contact} />
+</BaseLayout>
