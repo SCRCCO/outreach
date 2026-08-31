@@ -68,8 +68,9 @@ const navLinks = [
     <p data-reveal style="transition-delay: 100ms" class="mt-6 text-lg leading-relaxed text-stone-600">{lead.description}</p>
   </section>
 
-  <section id="menu" class="bg-stone-950 py-20 text-white sm:py-28">
-    <div class="mx-auto max-w-3xl px-6 sm:px-8">
+  <section id="menu" data-spotlight class="relative overflow-hidden bg-stone-950 py-20 text-white sm:py-28">
+    <div data-spotlight-glow class="pointer-events-none absolute inset-0 z-0 opacity-0" aria-hidden="true" />
+    <div class="relative z-10 mx-auto max-w-3xl px-6 sm:px-8">
       <div data-reveal class="mb-14 text-center">
         <p class="mb-4 flex items-center justify-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-accent">
           <span class="h-px w-8 bg-accent/60" />
@@ -87,7 +88,13 @@ const navLinks = [
               {items.map((item) => (
                 <li>
                   <div class="flex items-baseline gap-3">
-                    <span class="font-serif text-lg text-white">{item.name}</span>
+                    <span
+                      class={`font-serif text-lg text-white ${item.image ? 'cursor-zoom-in border-b border-dotted border-accent/50' : ''}`}
+                      data-dish-preview={item.image ? '' : undefined}
+                      data-image={item.image}
+                    >
+                      {item.name}
+                    </span>
                     <span class="flex-1 border-b border-dotted border-white/25" />
                     {item.price && <span class="font-sans text-base font-medium text-accent">{item.price}</span>}
                   </div>
@@ -98,6 +105,14 @@ const navLinks = [
           </div>
         ))
       }
+    </div>
+
+    <div
+      data-dish-preview-box
+      class="pointer-events-none fixed left-0 top-0 z-50 h-36 w-52 overflow-hidden rounded-xl opacity-0 shadow-2xl"
+      style="transition: opacity 0.2s ease"
+    >
+      <img src="" alt="" class="h-full w-full object-cover" />
     </div>
   </section>
 
@@ -158,3 +173,28 @@ const navLinks = [
 
   <ContactSection eyebrow="Contatti" title="Vieni a trovarci" contact={lead.contact} />
 </BaseLayout>
+
+<script>
+  // Anteprima del piatto che segue il cursore quando il nome ha una foto (data-image).
+  const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const box = document.querySelector<HTMLElement>('[data-dish-preview-box]');
+  const boxImg = box?.querySelector('img');
+
+  if (canHover && box && boxImg) {
+    document.querySelectorAll<HTMLElement>('[data-dish-preview]').forEach((el) => {
+      const src = el.dataset.image;
+      if (!src) return;
+      el.addEventListener('pointerenter', () => {
+        boxImg.src = src;
+        box.style.opacity = '1';
+      });
+      el.addEventListener('pointermove', (event) => {
+        const offsetX = event.clientX + 220 > window.innerWidth ? -232 : 24;
+        box.style.transform = `translate(${event.clientX + offsetX}px, ${Math.max(16, event.clientY - 150)}px)`;
+      });
+      el.addEventListener('pointerleave', () => {
+        box.style.opacity = '0';
+      });
+    });
+  }
+</script>

@@ -60,12 +60,20 @@ const themeVars =
     <link rel="icon" href="data:," />
   </head>
   <body class="min-h-screen bg-stone-50 font-sans text-stone-900 antialiased">
+    <div
+      data-scroll-progress
+      class="fixed inset-x-0 top-0 z-50 h-[3px] origin-left bg-primary"
+      style="transform: scaleX(0)"
+      aria-hidden="true"
+    ></div>
+
     {navLinks.length > 0 && <Nav businessName={businessName} links={navLinks} ctaText={navCtaText} ctaHref={navCtaHref} />}
 
     <slot />
 
-    <footer class="border-t border-stone-800 bg-stone-950 text-stone-400">
-      <div class="mx-auto max-w-6xl px-6 py-16 sm:px-8">
+    <footer data-spotlight class="relative overflow-hidden border-t border-stone-800 bg-stone-950 text-stone-400">
+      <div data-spotlight-glow class="pointer-events-none absolute inset-0 z-0 opacity-0 transition-opacity duration-500" aria-hidden="true" />
+      <div class="relative z-10 mx-auto max-w-6xl px-6 py-16 sm:px-8">
         <div class="flex flex-col gap-10 sm:flex-row sm:justify-between">
           <div class="max-w-sm">
             <p class="font-serif text-2xl text-white">{businessName}</p>
@@ -144,11 +152,12 @@ const themeVars =
         },
         { threshold: 0.15, rootMargin: '0px 0px -80px 0px' },
       );
-      document.querySelectorAll('[data-reveal]').forEach((el) => observer.observe(el));
+      document.querySelectorAll('[data-reveal], [data-reveal-image]').forEach((el) => observer.observe(el));
 
-      // Tilt 3D leggero al passaggio del mouse, solo su dispositivi con puntatore preciso.
       const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Tilt 3D leggero al passaggio del mouse, solo su dispositivi con puntatore preciso.
       if (canHover && !reduceMotion) {
         const strength = 7;
         document.querySelectorAll<HTMLElement>('[data-tilt]').forEach((card) => {
@@ -160,6 +169,65 @@ const themeVars =
           });
           card.addEventListener('pointerleave', () => {
             card.style.transform = '';
+          });
+        });
+      }
+
+      // Barra di avanzamento lettura, in alto, sempre presente.
+      const progress = document.querySelector<HTMLElement>('[data-scroll-progress]');
+      if (progress) {
+        const updateProgress = () => {
+          const max = document.documentElement.scrollHeight - window.innerHeight;
+          const ratio = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+          progress.style.transform = `scaleX(${ratio})`;
+        };
+        updateProgress();
+        window.addEventListener('scroll', updateProgress, { passive: true });
+        window.addEventListener('resize', updateProgress);
+      }
+
+      // Pulsanti "magnetici": si spostano verso il cursore anche quando è nelle vicinanze, non solo sopra.
+      if (canHover && !reduceMotion) {
+        const magneticEls = Array.from(document.querySelectorAll<HTMLElement>('[data-magnetic]'));
+        if (magneticEls.length > 0) {
+          const radius = 90;
+          const strength = 0.4;
+          window.addEventListener(
+            'pointermove',
+            (event) => {
+              for (const el of magneticEls) {
+                const rect = el.getBoundingClientRect();
+                const cx = rect.left + rect.width / 2;
+                const cy = rect.top + rect.height / 2;
+                const dx = event.clientX - cx;
+                const dy = event.clientY - cy;
+                const reach = Math.max(rect.width, rect.height) / 2 + radius;
+                const dist = Math.hypot(dx, dy);
+                if (dist < reach) {
+                  const pull = 1 - dist / reach;
+                  el.style.transform = `translate(${(dx * strength * pull).toFixed(1)}px, ${(dy * strength * pull).toFixed(1)}px)`;
+                } else if (el.style.transform) {
+                  el.style.transform = '';
+                }
+              }
+            },
+            { passive: true },
+          );
+        }
+      }
+
+      // Bagliore che segue il cursore nelle sezioni scure (footer, fasce "luxury").
+      if (canHover) {
+        document.querySelectorAll<HTMLElement>('[data-spotlight]').forEach((section) => {
+          const glow = section.querySelector<HTMLElement>('[data-spotlight-glow]');
+          if (!glow) return;
+          section.addEventListener('pointermove', (event) => {
+            const rect = section.getBoundingClientRect();
+            glow.style.background = `radial-gradient(500px circle at ${event.clientX - rect.left}px ${event.clientY - rect.top}px, rgba(255,255,255,0.07), transparent 60%)`;
+            glow.style.opacity = '1';
+          });
+          section.addEventListener('pointerleave', () => {
+            glow.style.opacity = '0';
           });
         });
       }

@@ -79,6 +79,30 @@ body {
   transform: translateX(-50%);
 }
 
+/* Reveal a tendina per le immagini (Gallery.astro): si "scoprono" dal basso. */
+[data-reveal-image] {
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+[data-reveal-image].is-visible {
+  clip-path: inset(0 0 0% 0);
+}
+
+/* Pulsanti "magnetici": lo spostamento verso il cursore è impostato via JS (BaseLayout). */
+[data-magnetic] {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Bagliore che segue il cursore nelle sezioni scure (footer, fasce dark). */
+[data-spotlight-glow] {
+  transition: opacity 0.5s ease;
+}
+
+/* Barra di avanzamento in alto. */
+[data-scroll-progress] {
+  transition: transform 0.1s linear;
+}
+
 @media (prefers-reduced-motion: reduce) {
   [data-tilt] {
     transition: none;
@@ -86,4 +110,27 @@ body {
   .shine::after {
     display: none;
   }
+  [data-reveal-image] {
+    clip-path: none;
+    transition: none;
+  }
+  [data-magnetic] {
+    transition: none;
+  }
+}
+
+/* Piccolo "pop" di conferma (usato dal calendario mock in Beauty.astro). */
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+  35% {
+    transform: scale(1.06);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.animate-pop {
+  animation: pop 0.4s ease-out;
 }

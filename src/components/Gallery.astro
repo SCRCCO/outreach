@@ -37,20 +37,92 @@ const spanPattern = [
       )}
       <div class="grid auto-rows-[130px] grid-cols-2 gap-3 sm:auto-rows-[160px] sm:grid-cols-4 sm:gap-4">
         {images.map((src, i) => (
-          <div
+          <button
+            type="button"
             data-reveal
+            data-tilt
+            data-lightbox-trigger
+            data-src={src}
+            data-alt={alt}
             style={`transition-delay:${(i % 4) * 70}ms`}
-            class={`overflow-hidden rounded-xl bg-stone-100 ${spanPattern[i % spanPattern.length]}`}
+            class={`shine group relative overflow-hidden rounded-xl bg-stone-100 ${spanPattern[i % spanPattern.length]}`}
           >
             <img
               src={src}
               alt={alt}
               loading="lazy"
-              class="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+              data-reveal-image
+              style={`transition-delay:${(i % 4) * 70 + 120}ms`}
+              class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
-          </div>
+            <span class="absolute inset-0 flex items-center justify-center bg-stone-950/0 transition-colors group-hover:bg-stone-950/20">
+              <svg
+                viewBox="0 0 24 24"
+                class="h-8 w-8 scale-75 text-white opacity-0 transition-all duration-300 group-hover:scale-100 group-hover:opacity-100"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+              >
+                <circle cx="10.5" cy="10.5" r="6.5" />
+                <path stroke-linecap="round" d="M20 20l-4.35-4.35" />
+              </svg>
+            </span>
+          </button>
         ))}
+      </div>
+
+      <div
+        data-lightbox
+        class="fixed inset-0 z-50 hidden items-center justify-center bg-stone-950/95 p-6 backdrop-blur-sm"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Foto ingrandita"
+      >
+        <button
+          type="button"
+          data-lightbox-close
+          aria-label="Chiudi"
+          class="absolute right-5 top-5 flex h-11 w-11 items-center justify-center rounded-full text-white/80 transition-colors hover:bg-white/10 hover:text-white"
+        >
+          <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.75">
+            <path stroke-linecap="round" d="M6 6l12 12M18 6L6 18" />
+          </svg>
+        </button>
+        <img data-lightbox-img src="" alt="" class="max-h-[85vh] max-w-full rounded-lg object-contain shadow-2xl" />
       </div>
     </section>
   )
 }
+
+<script>
+  const overlay = document.querySelector<HTMLElement>('[data-lightbox]');
+  const imgEl = overlay?.querySelector<HTMLImageElement>('[data-lightbox-img]');
+
+  function openLightbox(src: string, alt: string) {
+    if (!overlay || !imgEl) return;
+    imgEl.src = src;
+    imgEl.alt = alt;
+    overlay.classList.remove('hidden');
+    overlay.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    if (!overlay) return;
+    overlay.classList.add('hidden');
+    overlay.classList.remove('flex');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll<HTMLButtonElement>('[data-lightbox-trigger]').forEach((btn) => {
+    btn.addEventListener('click', () => openLightbox(btn.dataset.src ?? '', btn.dataset.alt ?? ''));
+  });
+
+  overlay?.addEventListener('click', (event) => {
+    if (event.target === overlay) closeLightbox();
+  });
+  overlay?.querySelector('[data-lightbox-close]')?.addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeLightbox();
+  });
+</script>

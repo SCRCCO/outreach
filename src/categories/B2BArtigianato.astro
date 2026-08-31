@@ -52,8 +52,9 @@ const navLinks = [
     stats={lead.stats}
   />
 
-  <section class="bg-stone-950 py-20 text-white sm:py-28">
-    <div class="mx-auto grid max-w-6xl items-center gap-12 px-6 sm:px-8 lg:grid-cols-2 lg:gap-20">
+  <section data-spotlight class="relative overflow-hidden bg-stone-950 py-20 text-white sm:py-28">
+    <div data-spotlight-glow class="pointer-events-none absolute inset-0 z-0 opacity-0" aria-hidden="true" />
+    <div class="relative z-10 mx-auto grid max-w-6xl items-center gap-12 px-6 sm:px-8 lg:grid-cols-2 lg:gap-20">
       <div data-reveal>
         <p class="mb-4 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-accent">
           <span class="h-px w-8 bg-accent/60"></span>

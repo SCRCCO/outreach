@@ -33,7 +33,8 @@
       "name": "Pici cacio e pepe",
       "description": "Pici fatti a mano ogni mattina, pecorino di grotta e pepe macinato al momento.",
       "price": "14€",
-      "group": "Primi"
+      "group": "Primi",
+      "image": "https://images.unsplash.com/photo-1663530761401-15eefb544889?q=80&w=600&auto=format&fit=crop"
     },
     {
       "name": "Tortelli di patate al ragù",
@@ -45,7 +46,8 @@
       "name": "Bistecca alla fiorentina",
       "description": "Razza chianina, cottura alla brace, servita al taglio (min. 1 kg).",
       "price": "58€/kg",
-      "group": "Secondi"
+      "group": "Secondi",
+      "image": "https://images.unsplash.com/photo-1616671285410-2a676a9a433d?q=80&w=600&auto=format&fit=crop"
     },
     {
       "name": "Peposo alla fornacina",
@@ -63,7 +65,8 @@
       "name": "Tiramisù della casa",
       "description": "Ricetta della nonna, mascarpone fresco e caffè tostato in zona.",
       "price": "7€",
-      "group": "Dolci"
+      "group": "Dolci",
+      "image": "https://images.unsplash.com/photo-1676471926534-d5c9771909fa?q=80&w=600&auto=format&fit=crop"
     }
   ],
   "servicesTitle": "Il menu",

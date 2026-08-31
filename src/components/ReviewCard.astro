@@ -28,7 +28,7 @@ const { text, author, rating, featured = false } = Astro.props;
       </figcaption>
     </figure>
   ) : (
-    <figure data-reveal class="flex h-full flex-col justify-between rounded-2xl bg-white p-7 ring-1 ring-stone-200">
+    <figure data-reveal data-tilt class="flex h-full flex-col justify-between rounded-2xl bg-white p-7 ring-1 ring-stone-200">
       <div>
         {rating && (
           <div class="mb-3 flex gap-0.5 text-accent" aria-hidden="true">

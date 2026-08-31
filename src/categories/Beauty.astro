@@ -113,7 +113,7 @@ const navLinks = [
 
       <div data-reveal class="grid grid-cols-3 gap-3 sm:grid-cols-6 sm:gap-4">
         {days.map((day, i) => (
-          <div class="rounded-2xl bg-white p-4 text-center ring-1 ring-stone-200">
+          <div data-tilt class="rounded-2xl bg-white p-4 text-center ring-1 ring-stone-200">
             <p class="text-xs font-semibold uppercase tracking-wide text-stone-500">{day}</p>
             <div class="mt-3 flex flex-col gap-2">
               {slotsByDay[i].map((slot) => (
@@ -133,7 +133,19 @@ const navLinks = [
       </div>
 
       <div class="mt-10 flex flex-col items-center gap-3 text-center">
-        <p data-slot-summary class="text-sm text-stone-500">Seleziona un orario, oppure scrivici direttamente.</p>
+        <p class="flex items-center gap-2 text-sm text-stone-500">
+          <svg
+            data-confirm-icon
+            viewBox="0 0 24 24"
+            class="hidden h-4 w-4 shrink-0 text-secondary"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+          <span data-slot-summary>Seleziona un orario, oppure scrivici direttamente.</span>
+        </p>
         <a
           data-whatsapp-cta
           href={whatsappBase}
@@ -158,10 +170,16 @@ const navLinks = [
         const summary = document.querySelector('[data-slot-summary]');
         if (summary) summary.textContent = `Hai selezionato ${day} alle ${time} — confermalo su WhatsApp.`;
 
+        const icon = document.querySelector('[data-confirm-icon]');
+        icon?.classList.remove('hidden');
+
         const cta = document.querySelector('[data-whatsapp-cta]');
         if (cta) {
           const message = `Ciao! Vorrei prenotare per ${day} alle ${time} da ${businessName}.`;
           cta.setAttribute('href', `${whatsappBase}?text=${encodeURIComponent(message)}`);
+          cta.classList.remove('animate-pop');
+          void cta.offsetWidth;
+          cta.classList.add('animate-pop');
         }
       });
     });

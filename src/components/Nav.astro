@@ -21,7 +21,12 @@ const { businessName, links, ctaText, ctaHref = '#contatti' } = Astro.props;
     <nav class="hidden items-center gap-8 md:flex">
       {
         links.map((link) => (
-          <a href={link.href} data-nav-text class="text-sm font-medium opacity-90 transition-opacity hover:opacity-100">
+          <a
+            href={link.href}
+            data-nav-text
+            data-nav-link
+            class="relative py-1 text-sm font-medium opacity-90 transition-opacity hover:opacity-100"
+          >
             {link.label}
           </a>
         ))
@@ -30,6 +35,7 @@ const { businessName, links, ctaText, ctaHref = '#contatti' } = Astro.props;
         ctaText && (
           <a
             href={ctaHref}
+            data-magnetic
             class="rounded-full bg-primary px-5 py-2 text-sm font-semibold text-white transition-transform hover:scale-[1.03] active:scale-95"
           >
             {ctaText}
@@ -57,7 +63,7 @@ const { businessName, links, ctaText, ctaHref = '#contatti' } = Astro.props;
   <div data-mobile-menu class="fixed inset-0 z-30 hidden flex-col items-center justify-center gap-7 bg-stone-950 text-white">
     {
       links.map((link) => (
-        <a href={link.href} data-mobile-link class="font-serif text-2xl">
+        <a href={link.href} data-mobile-link data-nav-link class="relative font-serif text-2xl">
           {link.label}
         </a>
       ))
@@ -94,12 +100,32 @@ const { businessName, links, ctaText, ctaHref = '#contatti' } = Astro.props;
   [data-mobile-menu].is-open {
     display: flex;
   }
+
+  /* Indicatore di sezione attiva (scrollspy): una piccola linea sotto la voce corrente. */
+  [data-nav-link]::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -3px;
+    height: 2px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  [data-nav-link].nav-active {
+    opacity: 1;
+  }
+  [data-nav-link].nav-active::after {
+    transform: scaleX(1);
+  }
 </style>
 
-<script>
-  const nav = document.querySelector<HTMLElement>('[data-nav]');
-  const toggle = document.querySelector<HTMLButtonElement>('[data-nav-toggle]');
-  const mobileMenu = document.querySelector<HTMLElement>('[data-mobile-menu]');
+<script define:vars={{ sectionHrefs: links.map((l) => l.href) }}>
+  const nav = document.querySelector('[data-nav]');
+  const toggle = document.querySelector('[data-nav-toggle]');
+  const mobileMenu = document.querySelector('[data-mobile-menu]');
   const iconOpen = document.querySelector('[data-icon-open]');
   const iconClose = document.querySelector('[data-icon-close]');
 
@@ -125,5 +151,28 @@ const { businessName, links, ctaText, ctaHref = '#contatti' } = Astro.props;
 
   document.querySelectorAll('[data-mobile-link]').forEach((link) => {
     link.addEventListener('click', closeMenu);
+  });
+
+  // Scrollspy: evidenzia in nav la sezione attualmente a schermo.
+  // Rimandato a DOMContentLoaded: questo script gira subito dopo </header>,
+  // prima che il resto della pagina (le sezioni con id) sia stato parsato.
+  document.addEventListener('DOMContentLoaded', () => {
+    if (sectionHrefs.length === 0) return;
+    const sections = sectionHrefs.map((href) => document.querySelector(href)).filter(Boolean);
+    if (sections.length === 0) return;
+    const navLinkEls = document.querySelectorAll('[data-nav-link]');
+
+    const updateActive = () => {
+      const scrollPos = window.scrollY + 140;
+      let activeHref = null;
+      for (const section of sections) {
+        if (section.offsetTop <= scrollPos) activeHref = '#' + section.id;
+      }
+      navLinkEls.forEach((el) => {
+        el.classList.toggle('nav-active', el.getAttribute('href') === activeHref);
+      });
+    };
+    updateActive();
+    window.addEventListener('scroll', updateActive, { passive: true });
   });
 </script>
